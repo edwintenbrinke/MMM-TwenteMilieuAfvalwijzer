@@ -1,3 +1,4 @@
+// STOLEN FROM https://github.com/Timendus/afvalkalender/blob/master/classes/twente_milieu.php
 class TwenteMilieu {
     static userAgent = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36';
     static companyCode = '8d97bb56-5afd-4cbc-a651-b4f7314264b4';
@@ -124,12 +125,13 @@ class TwenteMilieu {
     }
 }
 
+// STOLEN FROM https://github.com/gertperdZA/MMM-Afvalwijzer/blob/main/MMM-Afvalwijzer.js
 Module.register('MMM-TwenteMilieuAfvalwijzer', {
     defaults: {
         postalCode: "7605BG",
         houseNumber: 25,
         dateFormat: "dddd D MMMM",
-        numberOfweeks: 2,
+        numberOfWeeks: 2,
         updateInterval: 24 * 60 * 60 * 1000 // Defaults to 24 hours
     },
 
@@ -147,7 +149,8 @@ Module.register('MMM-TwenteMilieuAfvalwijzer', {
     },
 
     getTrashCollectionDays() {
-        // Placeholder for future implementation
+        const twenteMilieu = new TwenteMilieu(this.config.postalCode, this.config.houseNumber);
+        twenteMilieu.getEvents(new Date());
     },
 
     scheduleUpdate(delay) {
@@ -199,7 +202,7 @@ Module.register('MMM-TwenteMilieuAfvalwijzer', {
             const today = moment().startOf("day");
             const pickUpDate = moment(trashDay.date);
 
-            if (pickUpDate.isAfter(today) && pickUpDate.isBefore(today.clone().add(this.config.numberOfweeks, "weeks"))) {
+            if (pickUpDate.isBefore(today.clone().add(this.config.numberOfWeeks, "weeks"))) {
                 if (today.isSame(pickUpDate, 'day')) {
                     dateContainer.innerHTML = "Today";
                 } else if (today.add(1, "days").isSame(pickUpDate, 'day')) {
