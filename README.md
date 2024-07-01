@@ -16,6 +16,7 @@ MagicMirror2 module ripped and mutated from other fellow dutchies
         numberOfWeeks:7,
         houseNumber:"1",
         postalCode:"7605BG",
+        dateFormat: "dddd D MMMM",
         updateInterval: 60 * 1000 // every minute
     }
 },

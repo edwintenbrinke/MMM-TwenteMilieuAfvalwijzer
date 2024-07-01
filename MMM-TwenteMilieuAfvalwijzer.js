@@ -140,7 +140,6 @@ Module.register('MMM-TwenteMilieuAfvalwijzer', {
     },
 
     start() {
-        console.log('Starting module');
         this.scheduleUpdate();
     },
 
@@ -191,7 +190,7 @@ Module.register('MMM-TwenteMilieuAfvalwijzer', {
         const wrapper = document.createElement("div");
         const twenteMilieu = new TwenteMilieu(this.config.postalCode, this.config.houseNumber);
         const data = await twenteMilieu.getEvents(new Date());
-        console.log('pizza')
+
         for (const trashDay of data) {
             const pickupContainer = document.createElement("div");
             pickupContainer.classList.add("binday-container");
@@ -204,9 +203,9 @@ Module.register('MMM-TwenteMilieuAfvalwijzer', {
 
             if (pickUpDate.isBefore(today.clone().add(this.config.numberOfWeeks, "weeks"))) {
                 if (today.isSame(pickUpDate, 'day')) {
-                    dateContainer.innerHTML = "Today";
+                    dateContainer.innerHTML = "Vandaag"; // Today
                 } else if (today.add(1, "days").isSame(pickUpDate, 'day')) {
-                    dateContainer.innerHTML = "Tomorrow";
+                    dateContainer.innerHTML = "Morgen"; // Tomorrow
                 } else if (today.add(7, "days").isAfter(pickUpDate)) {
                     dateContainer.innerHTML = this.capitalize(pickUpDate.format("dddd"));
                 } else {
