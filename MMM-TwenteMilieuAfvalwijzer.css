@@ -32,3 +32,19 @@
     position: relative;
     margin-left: 4px;
 }
+
+.MMM-TwenteMilieuAfvalwijzer header {
+    opacity: 0.266667;
+}
+
+.binday-container:nth-of-type(1) {
+    opacity: 0.266667;
+}
+
+.binday-container:nth-of-type(2) {
+    opacity: 0.533333;
+}
+
+.binday-container:nth-of-type(3) {
+    opacity: 0.8;
+}
